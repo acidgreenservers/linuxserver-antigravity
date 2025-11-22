@@ -15,7 +15,7 @@ RUN curl -sL -o /tmp/antigravity.tar.gz "${AG_URL}" \
 
 COPY root/ /
 
-RUN chmod +x /app/antigravity /defaults/open-in-ag.sh /etc/s6-overlay/s6-rc.d/svc-antigravity/run /etc/cont-init.d/99-antigravity-config
+RUN chmod +x /app/antigravity /defaults/open-in-ag.sh /etc/s6-overlay/s6-rc.d/svc-antigravity/run /etc/cont-init.d/99-antigravity-config /etc/cont-init.d/50-antigravity-permissions
 
 # Add Healthcheck
 HEALTHCHECK --interval=30s --timeout=3s \

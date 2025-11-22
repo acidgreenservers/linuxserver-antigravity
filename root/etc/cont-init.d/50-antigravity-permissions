@@ -1,0 +1,5 @@
+#!/command/with-contenv bash
+
+# Fix permissions for Antigravity directory
+# This is needed because the AI features try to update/install into this directory
+chown -R abc:abc /opt/antigravity
