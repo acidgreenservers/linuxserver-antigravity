@@ -8,7 +8,7 @@ RUN curl -sL -o /tmp/antigravity.tar.gz "${AG_URL}" \
  && [ -n "${AG_SHA256}" ] && echo "${AG_SHA256}  /tmp/antigravity.tar.gz" | sha256sum -c - || echo "SHA256 verification skipped during build" \
  && tar -xzf /tmp/antigravity.tar.gz -C /opt/ \
  && mv /opt/Antigravity /opt/antigravity \
- && chmod +x /opt/antigravity/antigravity \
+ && chmod -R +x /opt/antigravity \
  && mkdir -p /app \
  && ln -s /opt/antigravity/antigravity /app/antigravity \
  && rm /tmp/antigravity.tar.gz
