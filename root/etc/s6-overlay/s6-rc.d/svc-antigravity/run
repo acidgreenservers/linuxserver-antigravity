@@ -1,5 +1,6 @@
 #!/command/with-contenv bash
 mkdir -p /config/antigravity-data
+export HOME=/config
 cd /app || exit
 exec s6-setuidgid abc \
      /app/antigravity \
