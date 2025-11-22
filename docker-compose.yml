@@ -1,6 +1,6 @@
 services:
   antigravity:
-    image: ghcr.io/YOUR_USER/linuxserver-antigravity:latest
+    image: ghcr.io/acidgreenservers/linuxserver-antigravity:latest
     container_name: antigravity
     environment:
       - PUID=1000

@@ -1,8 +1,8 @@
 # linuxserver-antigravity
 *A multi-arch Docker container providing dual IDE development environment*
 
-![Build](https://github.com/YOUR_USER/linuxserver-antigravity/actions/workflows/build.yml/badge.svg)
-![License](https://img.shields.io/github/license/YOUR_USER/linuxserver-antigravity)
+![Build](https://github.com/acidgreenservers/linuxserver-antigravity/actions/workflows/build.yml/badge.svg)
+![License](https://img.shields.io/github/license/acidgreenservers/linuxserver-antigravity)
 
 ## Overview
 
@@ -38,7 +38,7 @@ Instantly deployable via webVNC, with right-click integration, persistent data m
 ```yaml
 services:
   antigravity:
-    image: ghcr.io/YOUR_USER/linuxserver-antigravity:latest
+    image: ghcr.io/acidgreenservers/linuxserver-antigravity:latest
     container_name: antigravity
     environment:
       - PUID=1000
@@ -93,7 +93,7 @@ linuxserver/vscodium:latest (base)
 1. **Create Repository**: `linuxserver-antigravity`
 2. **Push Code**:
    ```bash
-   git remote add origin https://github.com/YOUR_USER/linuxserver-antigravity.git
+   git remote add origin https://github.com/acidgreenservers/linuxserver-antigravity.git
    git push -u origin main
    ```
 
@@ -109,7 +109,7 @@ linuxserver/vscodium:latest (base)
    ```
 
 ### Workflow Update
-Replace `YOUR_USER` in `.github/workflows/build.yml` with your GitHub username before first build.
+Replace `acidgreenservers` in `.github/workflows/build.yml` with your GitHub username before first build.
 
 ## 🧪 Testing & Verification
 
