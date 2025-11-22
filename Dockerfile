@@ -15,4 +15,12 @@ RUN curl -sL -o /tmp/antigravity.tar.gz "${AG_URL}" \
 
 COPY root/ /
 
-RUN chmod +x /app/antigravity /defaults/open-in-ag.sh /etc/s6-overlay/s6-rc.d/svc-antigravity/run
+RUN chmod +x /app/antigravity /defaults/open-in-ag.sh /etc/s6-overlay/s6-rc.d/svc-antigravity/run /etc/cont-init.d/99-antigravity-config
+
+# Add Healthcheck
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:3000/ || exit 1
+
+LABEL maintainer="acidgreenservers" \
+      description="Antigravity IDE in Docker"
+

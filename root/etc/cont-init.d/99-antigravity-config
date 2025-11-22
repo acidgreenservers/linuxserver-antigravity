@@ -1,0 +1,4 @@
+#!/command/with-contenv bash
+
+# Install desktop file
+cp /defaults/antigravity.desktop /usr/share/applications/
