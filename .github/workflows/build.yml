@@ -9,6 +9,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
 
 env:
   IMAGE: acidgreenservers/linuxserver-antigravity
@@ -26,6 +28,16 @@ jobs:
           REMOTE_SHA=$(curl -sL "${{ env.AG_URL }}" | sha256sum | cut -d' ' -f1)
           echo "sha256=$REMOTE_SHA" >> $GITHUB_OUTPUT
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.ag.outputs.sha256 }}
+            type=ref,event=tag
+
       - name: Set up QEMU & Buildx
         uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
@@ -41,9 +53,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:${{ steps.ag.outputs.sha256 }}
+          tags: ${{ steps.meta.outputs.tags }}
           build-args: |
             AG_URL=${{ env.AG_URL }}
             AG_SHA256=${{ steps.ag.outputs.sha256 }}
