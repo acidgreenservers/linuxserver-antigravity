@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Antigravity IDE
+Exec=/app/antigravity --no-sandbox --user-data-dir=/config/antigravity-data %F
+Terminal=false
+Type=Application
+Icon=code-oss
+Categories=Development;IDE;
+MimeType=inode/directory;text/plain;

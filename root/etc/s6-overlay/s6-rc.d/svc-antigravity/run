@@ -1,0 +1,10 @@
+#!/command/with-contenv bash
+mkdir -p /config/antigravity-data
+cd /app || exit
+exec s6-setuidgid abc \
+     /app/antigravity \
+        --no-sandbox \
+        --disable-dev-shm-usage \
+        --password-store=basic \
+        --user-data-dir=/config/antigravity-data \
+        /workspace

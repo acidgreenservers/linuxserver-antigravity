@@ -1,0 +1,46 @@
+name: Build multi-arch linuxserver-antigravity
+
+on:
+  repository_dispatch:
+    types: [linuxserver-update]
+  schedule:
+    - cron: '0 9 * * 0'
+  workflow_dispatch:
+
+env:
+  IMAGE: YOUR_USER/linuxserver-antigravity
+  AG_URL: https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.11.3-6583016683339776/linux-x64/Antigravity.tar.gz
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get remote Antigravity SHA256
+        id: ag
+        run: |
+          REMOTE_SHA=$(curl -sL "${{ env.AG_URL }}" | sha256sum | cut -d' ' -f1)
+          echo "sha256=$REMOTE_SHA" >> $GITHUB_OUTPUT
+
+      - name: Set up QEMU & Buildx
+        uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build & push
+        uses: docker/build-push-action@v5
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:${{ steps.ag.outputs.sha256 }}
+          build-args: |
+            AG_URL=${{ env.AG_URL }}
+            AG_SHA256=${{ steps.ag.outputs.sha256 }}

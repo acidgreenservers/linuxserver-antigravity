@@ -1,0 +1,18 @@
+services:
+  antigravity:
+    image: ghcr.io/YOUR_USER/linuxserver-antigravity:latest
+    container_name: antigravity
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      # Optional: Set custom VNC password (default: vncpassword)
+      # - VNC_PASSWD=your_custom_password
+    volumes:
+      - ./config:/config
+      - ./workspace:/workspace
+      # Optional: Mount your project directory
+      # - /path/to/your/project:/project
+    ports:
+      - 3000:3000
+    restart: unless-stopped
