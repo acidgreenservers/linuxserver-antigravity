@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM lscr.io/linuxserver/vscodium:latest
 
-ARG AG_URL="https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.11.3-6583016683339776/linux-x64/Antigravity.tar.gz"
+ARG AG_URL="https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/1.11.9-4787439284912128/linux-x64/Antigravity.tar.gz"
 ARG AG_SHA256=""
 
 RUN curl -sL -o /tmp/antigravity.tar.gz "${AG_URL}" \
